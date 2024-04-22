@@ -1,0 +1,23 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <climits>
+using namespace std;
+
+#define INF INT_MAX
+
+void dijkstra(vector<vector<pair<int, int>>>& graph, int source) {
+    int V = graph.size();
+    vector<int> dist(V, INF);
+    dist[source] = 0;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    pq.push({0, source});
+
+    while (!pq.empty()) {
+        int u = pq.top().second;
+        pq.pop();
+
+        for (auto& neighbor : graph[u]) {
+            int v = neighbor.first;
+            int weight = neighbor.second;
+            if (
